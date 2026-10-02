@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#6d3bbd" />
+  <title>Yas & Lore Studio</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">YL</div>
+        <div><strong>Yas & Lore</strong><span>Studio</span></div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard">⌂ <span>Início</span></button>
+        <button class="nav-item" data-view="episode">▶ <span>EP01 — Arca de Noé</span></button>
+        <button class="nav-item" data-view="characters">✦ <span>Personagens</span></button>
+        <button class="nav-item" data-view="library">▣ <span>Biblioteca</span></button>
+        <button class="nav-item" data-view="settings">⚙ <span>Configuração</span></button>
+      </nav>
+      <div class="side-note">Projeto infantil bíblico<br><b>Yas & Lore — Aventuras da Bíblia</b></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PRODUÇÃO</p>
+          <h1 id="pageTitle">Yas & Lore Studio</h1>
+        </div>
+        <div class="top-actions">
+          <button id="exportBtn" class="btn ghost">Exportar projeto</button>
+          <button id="resetBtn" class="btn ghost">Limpar status</button>
+        </div>
+      </header>
+
+      <section id="dashboardView" class="view active">
+        <div class="hero">
+          <div>
+            <span class="pill">EPISÓDIO 01</span>
+            <h2>A Arca de Noé</h2>
+            <p>Produza o episódio em pequenas cenas, mantendo Yas e Lore consistentes do começo ao fim.</p>
+            <button class="btn primary" id="continueBtn">Continuar produção</button>
+          </div>
+          <div class="hero-art">
+            <div class="book">✦<span>Bíblia das<br>Aventuras</span></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <article><span>Progresso</span><strong id="progressPct">0%</strong><small id="progressText">0 etapas concluídas</small></article>
+          <article><span>Cenas</span><strong id="sceneCount">0</strong><small>roteiro completo</small></article>
+          <article><span>Duração prevista</span><strong id="durationTotal">0:00</strong><small>antes da edição</small></article>
+          <article><span>Formato</span><strong>16:9</strong><small>YouTube • Full HD</small></article>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><div><p class="eyebrow">FLUXO</p><h3>Pipeline do episódio</h3></div></div>
+          <div class="pipeline" id="pipeline"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">PRÓXIMA AÇÃO</p><h3 id="nextActionTitle">Preparar Cena 01</h3></div>
+            <button class="btn small" id="nextActionBtn">Abrir cena</button>
+          </div>
+          <p id="nextActionText" class="muted"></p>
+        </section>
+      </section>
+
+      <section id="episodeView" class="view">
+        <div class="episode-head">
+          <div><span class="pill">EP01</span><h2>Yas & Lore: A Arca de Noé</h2><p>Gênesis 6–9 • confiança, obediência e esperança</p></div>
+          <div class="progress-ring" id="ring">0%</div>
+        </div>
+        <div id="sceneList" class="scene-list"></div>
+      </section>
+
+      <section id="charactersView" class="view">
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">CONTINUIDADE</p><h3>Personagens oficiais</h3></div></div>
+          <div class="character-grid">
+            <article class="character-card"><div class="avatar yas">Y</div><h3>Yas</h3><p>Irmã mais velha. Curiosa, protetora, inteligente e acolhedora.</p><label>Imagem MASTER<input type="file" accept="image/*" data-upload="yas"></label><img id="yasPreview" class="preview hidden" alt="Referência da Yas"></article>
+            <article class="character-card"><div class="avatar lore">L</div><h3>Lore</h3><p>Irmã menor. Doce, espontânea, divertida e musical.</p><label>Imagem MASTER<input type="file" accept="image/*" data-upload="lore"></label><img id="lorePreview" class="preview hidden" alt="Referência da Lore"></article>
+            <article class="character-card"><div class="avatar duo">YL</div><h3>Yas & Lore</h3><p>Referência das duas juntas para preservar altura, proporção e vínculo visual.</p><label>Imagem MASTER<input type="file" accept="image/*" data-upload="duo"></label><img id="duoPreview" class="preview hidden" alt="Referência das duas"></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="libraryView" class="view">
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">ASSETS</p><h3>Biblioteca de produção</h3></div></div>
+          <div class="library-grid" id="libraryGrid"></div>
+        </div>
+      </section>
+
+      <section id="settingsView" class="view">
+        <div class="panel">
+          <div class="panel-head"><div><p class="eyebrow">INTEGRAÇÕES</p><h3>Geração por API</h3></div></div>
+          <p class="muted">As chaves ficam somente no servidor da Vercel. Nunca coloque API keys neste navegador.</p>
+          <div class="settings-grid">
+            <article><strong>Grok Imagine Video 1.5</strong><p>Geração de clipes de 1–15s em 16:9.</p><span class="status-dot">via XAI_API_KEY</span></article>
+            <article><strong>ElevenLabs</strong><p>Narrador, Yas e Lore com vozes fictícias consistentes.</p><span class="status-dot">via ELEVENLABS_API_KEY</span></article>
+          </div>
+          <p class="hint">Depois do deploy, cadastre as variáveis em Vercel → Project Settings → Environment Variables.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="sceneDialog">
+    <form method="dialog" class="dialog-card">
+      <button class="dialog-close" value="close" aria-label="Fechar">×</button>
+      <div id="dialogContent"></div>
+    </form>
+  </dialog>
+
+  <script src="/data.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
