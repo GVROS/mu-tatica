@@ -134,7 +134,7 @@ function openScene(id){
         </div>
       </div>
     </div>`;
-  $("#sceneDialog").showModal();
+  if(!$("#sceneDialog").open) $("#sceneDialog").showModal();
   $("#copyPrompt").onclick=async()=>{await navigator.clipboard.writeText($("#promptBox").value);$("#copyPrompt").textContent="Copiado ✓"};
   $("#openGrok").onclick=()=>window.open("https://grok.com/imagine","_blank");
   $("#markImage").onclick=()=>setStep(s.id,"image",true);
